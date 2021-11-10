@@ -1,24 +1,19 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Button from './components/button/Button';
+import Couter from './components/counter/Couter';
+import {useAppDispatch} from './hooks/hook';
+import {getCount} from './state/slice/countSlice';
 function App() {
+  const dispatch = useAppDispatch();
+  const incrementCount=()=>{
+    dispatch(getCount());
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div data-test="app-component">
+    <Couter></Couter>
+    <Button incrementCount={incrementCount}>Click Me</Button>
     </div>
   );
 }
